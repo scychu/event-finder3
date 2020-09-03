@@ -1,0 +1,25 @@
+@import "~bootstrap/scss/bootstrap";
+
+html,
+body {
+  font-size: 16px;
+  height:100%;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 700;
+  color:pink;
+}
+
+h5,
+h6,
+p {
+  font-weight: 400;
+}
+
+li {
+  list-style: none;
+}
