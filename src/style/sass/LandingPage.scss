@@ -1,2 +1,89 @@
 @import "~bootstrap/scss/bootstrap";
 @import "./variable.scss";
+
+.landing-page_wrapper{
+    .landing-page_container{
+        color:#fff;
+        width:100%;
+        height:100vh;
+        background-size: cover;
+        background-color: black;
+        position: relative;
+        img{
+            width:100%;
+            opacity:200%;
+            display:block;
+            height:100%;
+            object-fit:cover;
+        }
+        .text{
+            text-align:left;
+            position: absolute;
+            top:30%;
+            left:10em;
+            color:white;
+            word-spacing: 0.2rem;
+            Button{
+                margin-top:2rem;
+                width:15rem;
+                background-color: #E8505B;
+                border:none;
+                &:hover{
+                    background-color: #fff;
+                    border:none;
+                    color:$second-color;
+                }
+            }
+        }
+    }
+    .event-lists{
+        padding:5em 10em;
+        background-color: $primary-color;
+        .filters{
+            display:flex;
+            justify-content: flex-end;
+            li{
+                padding:1rem;
+            }
+        }
+        ul#categories li {
+            display:inline;
+            padding:1rem;
+            &:hover{
+                background-color: #18A0FB;
+                border-radius: 0.5rem;
+                cursor: pointer;
+                color:#fff;
+            }
+          }
+        .events{
+            display:grid;
+            grid-template-columns: auto auto auto;
+            margin:0 auto;
+            box-sizing: content-box;
+            .event{
+                margin:1rem;
+                .event-img{
+                    img{
+                        width:25vw;
+                        height:10rem;
+                        object-fit: cover;
+                        border-top-left-radius: 0.4rem;
+                        border-top-right-radius: 0.4rem;
+                    }
+                }
+                .event-desc{
+                    display:flex;
+                    padding:1rem;
+                    background-color: #fff;
+                    border-bottom-left-radius: 0.4rem;
+                    border-bottom-right-radius: 0.4rem;
+                    .event-desc_time{
+                        text-align: center;
+                        margin-right:1rem;
+                    }
+                }
+            }
+        }
+    }
+}
