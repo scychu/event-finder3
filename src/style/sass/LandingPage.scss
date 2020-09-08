@@ -63,7 +63,11 @@
             box-sizing: content-box;
             .event{
                 margin:1rem;
-                .event-img{
+                cursor: pointer;
+                &:hover{
+                    box-shadow:2px 2px #E8505B;
+                }
+                .card{
                     img{
                         width:25vw;
                         height:10rem;
@@ -72,15 +76,33 @@
                         border-top-right-radius: 0.4rem;
                     }
                 }
-                .event-desc{
+                .card-body{
                     display:flex;
                     padding:1rem;
+                    height:10rem;
+                    overflow:hidden;
                     background-color: #fff;
                     border-bottom-left-radius: 0.4rem;
                     border-bottom-right-radius: 0.4rem;
                     .event-desc_time{
                         text-align: center;
                         margin-right:1rem;
+                    }
+                    h5{
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 1; /* number of lines to show */
+                        -webkit-box-orient: vertical;
+                        margin-bottom:1rem;
+                    }
+                    h6:nth-child(1){
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 2; /* number of lines to show */
+                        -webkit-box-orient: vertical;
+                        margin-bottom:1rem;
                     }
                 }
             }
