@@ -1,5 +1,4 @@
 import {GET_EVENT,GET_CATEGORIES,GET_DETAIL} from "../actions/types";
-import { getCategories } from "../actions/events";
   
 const initialState = {
     event:[],

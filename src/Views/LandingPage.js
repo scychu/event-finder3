@@ -8,7 +8,7 @@ export default function LandingPage() {
     return (
         <div className="landing-page_wrapper">
             <div className="landing-page_container">
-                <img src={img}/>
+                <img src={img} alt="landingpage"/>
                 <div className="text">
                     <h2>CREATE EVENT APP</h2> 
                     <h5>Search for your favourite events near you!</h5>

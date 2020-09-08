@@ -1,18 +1,7 @@
 import React,{useEffect} from 'react';
 import '../style/sass/LandingPage.scss';
-import {Card, CardImg, CardBody, CardSubtitle,Button,Collapse,
-    Navbar,
-    NavbarToggler,
-    NavbarBrand,
-    Nav,
-    NavItem,
-    NavLink,
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem,
-    NavbarText, Pagination, PaginationItem, PaginationLink} from 'reactstrap';
-import {getEvent,getCategories,getSpecific} from '../store/actions/events';
+import {Card, CardImg, CardBody, CardSubtitle, Pagination, PaginationItem, PaginationLink} from 'reactstrap';
+import {getEvent,getCategories} from '../store/actions/events';
 import {useSelector, useDispatch} from "react-redux";
 export default function EventLists() {
     const catList = useSelector(state=>state.events.categories)
@@ -24,11 +13,10 @@ export default function EventLists() {
     useEffect(() => {
         dispatch(getCategories());
     },[dispatch]);
-    const findCategory=(id)=>{
-        dispatch(getSpecific(id));
-        console.log(id)
-
-    }
+    // const findCategory=(id)=>{
+    //     dispatch(getSpecific(id));
+    //     console.log(id)
+    // }
     const categories = catList && catList.map(item=>
         <a href={`/categories/$`}key={item.id}>{item.name}</a>
         // <Button onClick={()=>{findCategory(item.id)}}>{item.name}</Button>

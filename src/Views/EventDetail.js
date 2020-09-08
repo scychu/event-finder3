@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getEventDetail } from "../store/actions/events";
@@ -17,7 +17,7 @@ export default function EventDetail() {
         <div className="event-detail">
             <div className="detail-wrapper">
                 <div className="event-image">
-                    <img src={details.image}/>
+                    <img src={details.image} alt="detail"/>
                     <h5 className={details.status==='available'?"available":"closed"}>{details.status}</h5>
                 </div>
                 <div className="event-more_detail">
