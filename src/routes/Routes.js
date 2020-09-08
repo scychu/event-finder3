@@ -6,7 +6,9 @@ export default function Routes() {
     return (
       <Switch>
         <Route path="/" component={LandingPage} exact />
-        <Route path="/:title/:id" component={EventDetail} exact />
+        <Route path="/detail/:title/:id" component={EventDetail} exact />
+        <Route path="/categories/:category" component={EventDetail} exact />
+
         {/* <Route component={NotFound} /> */}
       </Switch>
     );

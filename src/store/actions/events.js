@@ -6,7 +6,7 @@ export const getEvent = () => {
     return (dispatch) => {
       axios({
         method: "GET",
-        url:`${URL}/all?page=1`,
+        url:`${URL}/all?page=1`
       })
       .then((res) => {
         console.log(res)
@@ -28,7 +28,7 @@ export const getCategories = () => {
         url:`${URL}/categories`,
       })
       .then((res) => {
-        // console.log(res)
+        console.log(res)
         dispatch({
             type: GET_CATEGORIES,
             payload:res.data.data.categories
@@ -38,6 +38,25 @@ export const getCategories = () => {
         console.log(err, "ERROR");
       });
     };
+};
+
+export const getSpecific = (id) => {
+  return (dispatch) => {
+    axios({
+      method: "GET",
+      url:`${URL}/categories/${id}?page=1`,
+    })
+    .then((res) => {
+      console.log(res)
+      // dispatch({
+          // type: GET_SPECIFIC
+          // payload:res.data.data.categories
+      // })
+    })
+    .catch((err) => {
+      console.log(err, "ERROR");
+    });
+  };
 };
 
 export const getEventDetail = (id) => {

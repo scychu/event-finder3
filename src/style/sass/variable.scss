@@ -23,3 +23,11 @@ p {
 li {
   list-style: none;
 }
+.btn-primary{
+  background-color: $second-color;
+  border:none;
+  &:hover{
+    background-color: $primary-color;
+    color:$second-color;
+  }
+}

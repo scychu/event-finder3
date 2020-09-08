@@ -21,7 +21,7 @@ export default function EventDetail() {
                     <h5 className={details.status==='available'?"available":"closed"}>{details.status}</h5>
                 </div>
                 <div className="event-more_detail">
-                    <p>{details.dateTimeEnd}</p>
+                    <p>{details.dateTimeStart} - {details.dateTimeEnd}</p>
                     <h3>{details.title}</h3>
                     <h4>{details.location}</h4>
                     <p>{details.description}</p>
