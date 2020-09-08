@@ -1,5 +1,6 @@
 @import "~bootstrap/scss/bootstrap";
-
+$primary-color:#F5F5F5;
+$second-color:#E8505B;
 html,
 body {
   font-size: 16px;
@@ -11,7 +12,6 @@ h2,
 h3,
 h4 {
   font-weight: 700;
-  color:pink;
 }
 
 h5,
@@ -22,4 +22,12 @@ p {
 
 li {
   list-style: none;
+}
+.btn-primary{
+  background-color: $second-color;
+  border:none;
+  &:hover{
+    background-color: $primary-color;
+    color:$second-color;
+  }
 }
