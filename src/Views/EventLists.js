@@ -1,11 +1,6 @@
-import React,{useEffect,useState} from 'react';
+import React,{useEffect} from 'react';
 import '../style/sass/LandingPage.scss';
-import img from '../style/image 7.png';
-import {
-    Card, CardImg, CardBody, Button,
-    CardTitle, CardSubtitle, Col,Row,
-    UncontrolledDropdown, DropdownToggle, DropdownMenu
-  } from 'reactstrap';
+import {Card, CardImg, CardBody, CardSubtitle} from 'reactstrap';
 
 import {getEvent,getCategories} from '../store/actions/events';
 import {useSelector, useDispatch} from "react-redux";
@@ -40,23 +35,6 @@ export default function EventLists() {
             </div>
         </CardBody>
       </Card>
-
-        // <div className="event" key={item.id}>
-        //     <div className="event-img">
-        //         <img src={item.image} alt={item.title}/>
-        //     </div>
-        //     <div className="event-desc">
-        //         <div className="event-desc_time">
-        //             <h4>14</h4>
-        //             <h4>Sept</h4>
-        //         </div>
-        //         <div className="event-desc-location">
-        //             <h5>{item.title}</h5>
-        //             <h6>{item.description}</h6>
-        //             <h6>{item.location}</h6>
-        //         </div>
-        //     </div>
-        // </div>
     )
     return (
         <div className="event-lists">

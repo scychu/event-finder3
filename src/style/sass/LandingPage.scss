@@ -109,3 +109,47 @@
         }
     }
 }
+
+//Event Detail 
+.event-detail{
+    padding:8rem 5rem;
+    height:100vh;
+    background-color: $primary-color;
+    .detail-wrapper{
+        display:grid;
+        grid-template-columns: 35em 40em;
+        // grid-column-gap: 10rem;
+        .event-image{
+            margin:auto;
+            display:flex;
+            position: relative;
+            img{
+                width:30em;
+                border-radius: 0.5rem;
+                &:hover{
+                    width: 32em;
+                }
+            }
+            h5{
+                position: absolute;
+                top:5px;
+                right:10px;
+                // color:#fff;
+                padding:0.3rem;
+                border-radius: 0.5rem;
+                &.available{
+                    background-color: rgb(120, 250, 68);
+                }
+                &.closed{
+                    background-color: $second-color;
+                    color:$primary-color;
+                }
+            }
+        }
+        .event-more_detail{
+            width:50vw;
+            box-sizing: border-box;
+            padding:0 2rem;
+        }
+    }
+}

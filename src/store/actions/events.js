@@ -44,13 +44,13 @@ export const getEventDetail = (id) => {
   return (dispatch) => {
     axios({
       method: "GET",
-      url:`${URL}/event/one/${id}`,
+      url:`${URL}/one/${id}`,
     })
     .then((res) => {
-      // console.log(res)
+      console.log(res)
       dispatch({
-          type: GET_DETAIL
-          // payload:res.data.data.categories
+          type: GET_DETAIL,
+          payload:res.data.data.event
       })
     })
     .catch((err) => {
