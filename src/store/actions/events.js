@@ -12,7 +12,8 @@ export const getEvent = () => {
         console.log(res)
         dispatch({
             type: GET_EVENT,
-            payload:res.data.data.events
+            payload:res.data.data.events,
+            pages:res.data.data.page
         })
         
       })

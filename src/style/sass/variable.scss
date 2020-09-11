@@ -5,7 +5,26 @@ html,
 body {
   font-size: 16px;
   height:100%;
+  scroll-behavior: smooth;
 }
+.btn-primary {
+  background-color: #E8505B;
+  border: none;
+  &:hover {
+    background-color:$primary-color;
+    color: $second-color;
+  }
+}
+.btn-link {
+  color: $second-color;
+  &:hover {
+    background-color: $primary-color;
+    color:$second-color;
+    text-decoration: none;
+  }
+}
+
+
 
 h1,
 h2,
