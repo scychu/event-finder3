@@ -9,7 +9,7 @@ export const getEvent = () => {
         url:`${URL}/all?page=1`
       })
       .then((res) => {
-        console.log(res)
+        // console.log(res)
         dispatch({
             type: GET_EVENT,
             payload:res.data.data.events,
@@ -29,7 +29,7 @@ export const getCategories = () => {
         url:`${URL}/categories`,
       })
       .then((res) => {
-        console.log(res)
+        // console.log(res)
         dispatch({
             type: GET_CATEGORIES,
             payload:res.data.data.categories
@@ -48,7 +48,7 @@ export const getSpecific = (id) => {
       url:`${URL}/categories/${id}?page=1`,
     })
     .then((res) => {
-      console.log(res)
+      // console.log(res)
       // dispatch({
           // type: GET_SPECIFIC
           // payload:res.data.data.categories
@@ -67,7 +67,7 @@ export const getEventDetail = (id) => {
       url:`${URL}/one/${id}`,
     })
     .then((res) => {
-      console.log(res)
+      // console.log(res)
       dispatch({
           type: GET_DETAIL,
           payload:res.data.data.event
