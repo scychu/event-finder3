@@ -1,28 +1,10 @@
-import React,{useEffect} from 'react';
+import React from 'react';
 import moment from 'moment';
-import '../style/sass/LandingPage.scss';
-import {
-    Navbar,
-    NavbarBrand,
-    Card, CardImg, CardBody, CardSubtitle, Pagination, PaginationItem, PaginationLink} from 'reactstrap';
-import {getEvent,getCategories} from '../store/actions/events';
-import {useSelector, useDispatch} from "react-redux";
-export default function EventLists() {
-    const catList = useSelector(state=>state.events.categories)
-    const eventList = useSelector(state=>state.events.event)
-    // const pages = useSelector(state=>state.events.pages)
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(getEvent());
-    },[dispatch]);
-    useEffect(() => {
-        dispatch(getCategories());
-    },[dispatch]);
-    // const findCategory=(id)=>{
-    //     dispatch(getSpecific(id));
-    //     console.log(id)
-    // }
+import {useSelector} from "react-redux";
+import {Card, CardImg, CardBody, CardSubtitle, Pagination, PaginationItem, PaginationLink} from 'reactstrap';
 
+export default function EventbyCategory() {
+    const eventList = useSelector(state=>state.events.event)
     const moneyConvert =(num)=> {
         var str = num.toString();
         let array = [];
@@ -38,13 +20,6 @@ export default function EventLists() {
         let result = rev_res.join('')
         return result
     }
-    const categories = catList && catList.map(item=>
-        // <NavbarBrand href={`/categories/${item.name}`}key={item.id}>{item.name}</NavbarBrand>
-        <NavbarBrand href={`#categories/${item.name}`}key={item.id}>{item.name}</NavbarBrand>
-        // <a href={`/categories/$`}key={item.id}>{item.name}</a>
-        // <Button onClick={()=>{findCategory(item.id)}}>{item.name}</Button>
-    )
-        
     const event = eventList && eventList.map(item=>
         <Card className="event" key={item.id}>
             <a href={`/detail/${item.title}/${item.id}`}>
@@ -66,26 +41,12 @@ export default function EventLists() {
         </CardBody>
       </Card>
     )
-
     return (
-        <>
-        <div className="event-lists">
-            <h1>Upcoming Events</h1>
-            <div className="filters">
-                <li>By Date</li>
-                <li>By Price</li>
-            </div>
-            <ul id="categories">
-            <Navbar color="light" light expand="md">
-            <NavbarBrand href={`/categories/All`}>All</NavbarBrand>
-                {categories}
-                {/* <NavbarBrand href="/">reactstrap</NavbarBrand> */}
-                {/* <NavbarBrand href="/">reactstrap</NavbarBrand> */}
-            </Navbar>
-                {/* <a href={`/categories/$`}>All</a> */}
-                {/* {categories} */}
-            </ul> 
-            <div className="events">
+        <div>
+          <div className="events">
+                <div id="categories/Music">
+                Music
+                </div>
                 {event}
             </div>
             <Pagination aria-label="Page navigation example">
@@ -100,8 +61,10 @@ export default function EventLists() {
                 <PaginationItem>
                     <PaginationLink next href="#" />
                 </PaginationItem>
+                <PaginationItem>
+                    <PaginationLink last href="#" />
+                </PaginationItem>
             </Pagination>
         </div>
-        </>
     )
 }

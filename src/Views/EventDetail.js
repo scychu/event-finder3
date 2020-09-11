@@ -1,17 +1,40 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getEventDetail } from "../store/actions/events";
 import {Button} from 'reactstrap';
+import moment from 'moment';
+import ModalBooking from "./ModalBooking";
+
 export default function EventDetail() {
     const { id } = useParams();
-    const details = useSelector((state)=>state.events.detail)
-
+    const details = useSelector((state)=>state.events.detail);
+    const fee = useSelector((state)=>state.events.fee);
     const dispatch = useDispatch();
-
+    const [modalBookOpen, setModalBookOpen] = useState(false);
+    const moneyConvert =(num)=> {
+        var str = num.toString();
+        let array = [];
+        var chuncks =str.split('');
+        var reverse_value = chuncks.reverse();
+        let join = reverse_value.join('');
+        for(let i = 0, len = join.length; i < len; i += 3) {
+            array.push(join.substr(i, 3))
+        }
+        let arr_result = array.join(',')
+        let arr_res = arr_result.split('');
+        let rev_res = arr_res.reverse();
+        let result = rev_res.join('')
+        return result
+    }
     useEffect(() => {
         dispatch(getEventDetail(id));
     }, [dispatch, id]);
+
+    const bookEvent = ()=>{
+        console.log("aa")
+        setModalBookOpen(true)
+    }
 
     return (
         <div className="event-detail">
@@ -21,12 +44,13 @@ export default function EventDetail() {
                     <h5 className={details.status==='available'?"available":"closed"}>{details.status}</h5>
                 </div>
                 <div className="event-more_detail">
-                    <p>{details.dateTimeStart} - {details.dateTimeEnd}</p>
+                    {modalBookOpen? <ModalBooking setModalBookOpen={setModalBookOpen}/> : ""}
+                    <p>{moment(details.dateTimeStart).format('DD MMM YYYY')} - {moment(details.dateTimeEnd).format('DD MMM YYYY')}</p>
                     <h3>{details.title}</h3>
                     <h4>{details.location}</h4>
                     <p>{details.description}</p>
-                    <Button color="link"disabled>{details.fee}</Button>
-                    <Button color="primary">Book Now</Button>
+                    <Button color="link"disabled>SGD{moneyConvert(fee)}</Button>
+                    <Button color="danger" onClick={bookEvent}>Book Now</Button>
                 </div>
             </div>
         </div>

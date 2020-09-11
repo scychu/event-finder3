@@ -23,12 +23,20 @@
             left:10em;
             color:white;
             word-spacing: 0.2rem;
-            Button{
-                margin-top:2rem;
+            h5{
+                margin-bottom:2rem;
+            }
+            a{
                 width:15rem;
                 background-color: #E8505B;
                 border:none;
+                color:$primary-color;
+                padding: 0.5rem 1rem;
+                font-size: 1.25rem;
+                line-height: 1.5;
+                border-radius: 0.3rem;
                 &:hover{
+                    text-decoration: none;
                     background-color: #fff;
                     border:none;
                     color:$second-color;
@@ -167,9 +175,54 @@
             }
         }
         .event-more_detail{
-            width:50vw;
+            width:80%;
             box-sizing: border-box;
             padding:0 2rem;
         }
     }
 }
+
+.booking-wrapper {
+    overflow: scroll;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1050;
+    width: 100vw;
+    height: 100%;
+    outline: 1;
+    background-color: rgba(0, 0, 0, 0.125);
+    transition: transform 0.3s ease-out;
+    // pointer-events: none;
+    .booking-outer {
+      margin: 0 auto;
+      top: 10%;
+      border-radius: 1%;
+      background-color: #fff;
+      padding: 1rem;
+      width: 40rem;
+      height: auto;
+      text-align: left;
+      position: relative;
+      .container {
+        padding: 1rem;
+        .modal-header{
+            padding:0;
+        }
+        p {
+            margin:2rem 0;
+        }
+      }
+      
+      .modal-btn {
+        display: flex;
+        justify-content: flex-end;
+  
+        .btn {
+          margin: auto 0;
+          width: auto;
+        }
+      }
+    }
+  }
+  

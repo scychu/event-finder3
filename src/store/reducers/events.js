@@ -3,11 +3,13 @@ import {GET_EVENT,GET_CATEGORIES,GET_DETAIL} from "../actions/types";
 const initialState = {
     event:[],
     categories:[],
-    detail:[]
+    detail:[],
+    fee:0,
+    pages:0
 };
   
 const events = (state = initialState, action) => {
-    const { type,payload } = action;
+    const { type,payload,pages } = action;
     switch (type) {
         default:
         return {
@@ -16,7 +18,8 @@ const events = (state = initialState, action) => {
         case GET_EVENT: 
             return {
                 ...state,
-                event:payload
+                event:payload,
+                pages:pages
             }
         
         case GET_CATEGORIES: 
@@ -28,7 +31,8 @@ const events = (state = initialState, action) => {
         case GET_DETAIL: 
             return {
                 ...state,
-                detail:payload
+                detail:payload,
+                fee:payload.fee
             }
         
     }
