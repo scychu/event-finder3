@@ -29,7 +29,7 @@ export const getCategories = () => {
         url:`${URL}/categories`,
       })
       .then((res) => {
-        // console.log(res)
+        console.log(res)
         dispatch({
             type: GET_CATEGORIES,
             payload:res.data.data.categories
@@ -45,14 +45,15 @@ export const getSpecific = (id) => {
   return (dispatch) => {
     axios({
       method: "GET",
-      url:`${URL}/categories/${id}?page=1`,
+      url:`${URL}/category/${id}?page=1`,
     })
     .then((res) => {
-      // console.log(res)
-      // dispatch({
-          // type: GET_SPECIFIC
-          // payload:res.data.data.categories
-      // })
+      console.log(res)
+      dispatch({
+          type: GET_EVENT,
+          payload:res.data.data.events,
+          pages:res.data.data.page
+      })
     })
     .catch((err) => {
       console.log(err, "ERROR");
@@ -67,10 +68,10 @@ export const getEventDetail = (id) => {
       url:`${URL}/one/${id}`,
     })
     .then((res) => {
-      // console.log(res)
+      console.log(res)
       dispatch({
-          type: GET_DETAIL,
-          payload:res.data.data.event
+        type: GET_DETAIL,
+        payload:res.data.data.event
       })
     })
     .catch((err) => {

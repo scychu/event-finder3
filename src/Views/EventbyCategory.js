@@ -1,9 +1,18 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import moment from 'moment';
-import {useSelector} from "react-redux";
-import {Card, CardImg, CardBody, CardSubtitle, Pagination, PaginationItem, PaginationLink} from 'reactstrap';
+import {useParams} from "react-router-dom";
+import {useSelector, useDispatch} from "react-redux";
+import {Card, CardImg, Breadcrumb, BreadcrumbItem,CardBody, CardSubtitle, Pagination, PaginationItem, PaginationLink} from 'reactstrap';
+import {getSpecific} from '../store/actions/events';
 
 export default function EventbyCategory() {
+    const dispatch = useDispatch()
+    const {category,id} = useParams()
+
+    useEffect(() => {
+        dispatch(getSpecific(id));
+    },[dispatch,id]);
+    
     const eventList = useSelector(state=>state.events.event)
     const moneyConvert =(num)=> {
         var str = num.toString();
@@ -42,11 +51,15 @@ export default function EventbyCategory() {
       </Card>
     )
     return (
-        <div>
+        <div className="specific-container">
+            <div className="list-wrapper">
+                <Breadcrumb tag="nav" listTag="div">
+                    <BreadcrumbItem tag="a" href="/">Home</BreadcrumbItem>
+                    <BreadcrumbItem tag="a" href="/categories">Categories</BreadcrumbItem>
+                    <BreadcrumbItem tag="a" href="#">{category}</BreadcrumbItem>
+                </Breadcrumb>
+            </div>
           <div className="events">
-                <div id="categories/Music">
-                Music
-                </div>
                 {event}
             </div>
             <Pagination aria-label="Page navigation example">
