@@ -12,7 +12,6 @@ export default function EventDetail() {
     const [modalBookOpen, setModalBookOpen] = useState(false);
     const details = useSelector((state)=>state.events.detail);
     const fee = useSelector((state)=>state.events.fee);
-    const data = useSelector((state)=>state.book.data);
     const catId = useSelector((state)=>state.events.id);
     const category = useSelector((state)=>state.events.category);
     const moneyConvert =(num)=> {
