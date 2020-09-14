@@ -1,17 +1,36 @@
 @import "~bootstrap/scss/bootstrap";
-
+$primary-color:#F5F5F5;
+$second-color:#E8505B;
 html,
 body {
   font-size: 16px;
   height:100%;
+  scroll-behavior: smooth;
 }
+.btn-primary {
+  background-color: #E8505B;
+  border: none;
+  &:hover {
+    background-color:$primary-color;
+    color: $second-color;
+  }
+}
+.btn-link {
+  color: $second-color;
+  &:hover {
+    background-color: $primary-color;
+    color:$second-color;
+    text-decoration: none;
+  }
+}
+
+
 
 h1,
 h2,
 h3,
 h4 {
   font-weight: 700;
-  color:pink;
 }
 
 h5,
@@ -22,4 +41,12 @@ p {
 
 li {
   list-style: none;
+}
+.btn-primary{
+  background-color: $second-color;
+  border:none;
+  &:hover{
+    background-color: $primary-color;
+    color:$second-color;
+  }
 }
