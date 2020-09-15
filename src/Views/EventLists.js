@@ -9,11 +9,11 @@ import {useSelector, useDispatch} from "react-redux";
 export default function EventLists() {
     const catList = useSelector(state=>state.events.categories)
     const eventList = useSelector(state=>state.events.event)
-    // const pages = useSelector(state=>state.events.pages)
+    const pages = useSelector(state=>state.events.pages)
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getEvent());
+        dispatch(getEvent(1));
     },[dispatch]);
     
     useEffect(() => {
@@ -74,7 +74,9 @@ export default function EventLists() {
         </div>
       </Card>
     )
-
+    const nextPage=(page)=>{
+        dispatch(getEvent(page));
+    }
     return (
         <div className="event-lists">
             <h1>Upcoming Events</h1>
@@ -90,11 +92,15 @@ export default function EventLists() {
                 {event}
             </div>
             <Pagination aria-label="Page navigation example">
-                <PaginationItem>
-                    <PaginationLink href="#">
-                    1
-                    </PaginationLink>
-                </PaginationItem> 
+                {[...Array(pages)].map((item,index)=>{
+                    return(
+                        <PaginationItem key={index}>
+                            <PaginationLink onClick={()=>nextPage(index+1)}>
+                                {index+1}
+                            </PaginationLink>
+                        </PaginationItem>
+                    )
+                })}
             </Pagination>
         </div>
     )

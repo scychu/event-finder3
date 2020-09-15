@@ -2,11 +2,11 @@ import {GET_EVENT,GET_CATEGORIES,GET_DETAIL} from '../actions/types'
 import axios from 'axios'
   const URL = 'https://event-finder-team-c.herokuapp.com/api/v1/event';
 
-export const getEvent = () => {
+export const getEvent = (page) => {
     return (dispatch) => {
       axios({
         method: "GET",
-        url:`${URL}/all?page=1`
+        url:`${URL}/all?page=${page}`
       })
       .then((res) => {
         // console.log(res)
