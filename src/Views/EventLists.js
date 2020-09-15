@@ -47,7 +47,7 @@ export default function EventLists() {
         // <NavbarBrand href={`/categories/${item.name}`}key={item.id}>{item.name}</NavbarBrand>
         // <NavbarBrand href={`#categories/${item.name}`}key={item.id}>{item.name}</NavbarBrand>
         // <a href={`/categories/$`}key={item.id}>{item.name}</a>
-        <Button color="link"onClick={()=>{findCategory(item.id)}}>{item.name}</Button>
+        <Button key={item.id}color="link"onClick={()=>{findCategory(item.id)}}>{item.name}</Button>
     )
         
     const event = eventList && eventList.map(item=>
@@ -91,16 +91,10 @@ export default function EventLists() {
             </div>
             <Pagination aria-label="Page navigation example">
                 <PaginationItem>
-                    <PaginationLink previous href="#" />
-                </PaginationItem>
-                <PaginationItem>
                     <PaginationLink href="#">
                     1
                     </PaginationLink>
                 </PaginationItem> 
-                <PaginationItem>
-                    <PaginationLink next href="#" />
-                </PaginationItem>
             </Pagination>
         </div>
     )
