@@ -41,11 +41,11 @@ export const getCategories = () => {
     };
 };
 
-export const getSpecific = (id) => {
+export const getSpecific = (id,page) => {
   return (dispatch) => {
     axios({
       method: "GET",
-      url:`${URL}/category/${id}?page=1`,
+      url:`${URL}/category/${id}?page=${page}`,
     })
     .then((res) => {
       console.log(res)

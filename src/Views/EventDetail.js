@@ -63,7 +63,7 @@ export default function EventDetail() {
                     </div>
                     <p>{details.description}</p>
                     <Button color="link"disabled>SGD{moneyConvert(fee)}</Button>
-                    <Button color="danger" onClick={bookEvent}>Book Now</Button>
+                    <Button color="danger" className={details.status==='unavailable' ? "cant": ""}onClick={bookEvent}>Book Now</Button>
                 </div>
             </div>
         </div>
