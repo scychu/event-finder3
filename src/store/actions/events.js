@@ -9,7 +9,7 @@ export const getEvent = () => {
         url:`${URL}/all?page=1`
       })
       .then((res) => {
-        // console.log(res)
+        console.log(res)
         dispatch({
             type: GET_EVENT,
             payload:res.data.data.events,
@@ -45,15 +45,14 @@ export const getSpecific = (id) => {
   return (dispatch) => {
     axios({
       method: "GET",
-      url:`${URL}/category/${id}?page=1`,
+      url:`${URL}/categories/${id}?page=1`,
     })
     .then((res) => {
       console.log(res)
-      dispatch({
-          type: GET_EVENT,
-          payload:res.data.data.events,
-          pages:res.data.data.page
-      })
+      // dispatch({
+          // type: GET_SPECIFIC
+          // payload:res.data.data.categories
+      // })
     })
     .catch((err) => {
       console.log(err, "ERROR");
@@ -70,8 +69,8 @@ export const getEventDetail = (id) => {
     .then((res) => {
       console.log(res)
       dispatch({
-        type: GET_DETAIL,
-        payload:res.data.data.event
+          type: GET_DETAIL,
+          payload:res.data.data.event
       })
     })
     .catch((err) => {

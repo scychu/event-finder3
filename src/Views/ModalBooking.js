@@ -2,7 +2,8 @@ import React ,{useState,useCallback}from 'react';
 import {FormGroup,Label,Input,Button,Container,ModalHeader} from "reactstrap";
 import { useSelector,useDispatch } from "react-redux";
 import { bookEvent } from "../store/actions/book";
-import swal from 'sweetalert';
+
+
 export default function ModalBooking(props) {
     const {setModalBookOpen} = props
     const eventTitle = useSelector(state => state.events.detail.title);
@@ -16,19 +17,15 @@ export default function ModalBooking(props) {
       )
     const bookNow = async (e)=>{
         e.preventDefault();
-        if(email !==""){
-            const create = {
-              email,
-              eventId,
-            }
-          const res = await dispatch(bookEvent(create));
-          if(res){
-            setModalBookOpen(false)
-          }else{
-            console.log("aaa")
-          }
+        if(email===""){
+          alert("You must fill in the email field")
         }else{
-          swal("","You must fill in the email field","info")
+          const create = {
+            email,
+            eventId,
+          }
+          console.log(create)
+          dispatch(bookEvent(create))
         }
     }
     

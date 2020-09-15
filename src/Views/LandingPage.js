@@ -1,7 +1,6 @@
 import React from 'react'
 import '../style/sass/LandingPage.scss';
 import img from '../style/image 7.png';
-import {Button} from 'reactstrap';
 import EventLists from './EventLists';
 
 export default function LandingPage() {
@@ -12,7 +11,7 @@ export default function LandingPage() {
                 <div className="text">
                     <h2>CREATE EVENT APP</h2> 
                     <h5>Search for your favourite events near you!</h5>
-                    <Button href="#eventlist">Find Here</Button>
+                    <a href="#eventlist">Find Here</a>
                 </div>
             </div>
             <div id="eventlist">
