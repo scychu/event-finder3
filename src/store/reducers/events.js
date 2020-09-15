@@ -5,7 +5,9 @@ const initialState = {
     categories:[],
     detail:[],
     fee:0,
-    pages:0
+    pages:0,
+    category:"",
+    id:0
 };
   
 const events = (state = initialState, action) => {
@@ -32,7 +34,9 @@ const events = (state = initialState, action) => {
             return {
                 ...state,
                 detail:payload,
-                fee:payload.fee
+                fee:payload.fee,
+                category:payload.categoryInfo.name,
+                id:payload.categoryInfo.id
             }
         
     }
