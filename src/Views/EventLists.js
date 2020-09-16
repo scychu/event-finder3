@@ -1,19 +1,18 @@
-import React,{useEffect} from 'react';
+import React,{useEffect,useState} from 'react';
 import moment from 'moment';
 import '../style/sass/LandingPage.scss';
-import {
-    Button,
-    Card, CardImg, CardBody, CardSubtitle, Pagination, PaginationItem, PaginationLink} from 'reactstrap';
-import {getEvent,getCategories,getSpecific} from '../store/actions/events';
+import {Button,Card, CardImg, CardBody,CardSubtitle, Pagination, PaginationItem, PaginationLink} from 'reactstrap';
+import {getEvent,getCategories,getSpecific,getFreeEvent,getPaidEvent} from '../store/actions/events';
 import {useSelector, useDispatch} from "react-redux";
+
 export default function EventLists() {
     const catList = useSelector(state=>state.events.categories)
     const eventList = useSelector(state=>state.events.event)
-    // const pages = useSelector(state=>state.events.pages)
+    const pages = useSelector(state=>state.events.pages)
     const dispatch = useDispatch();
-
+    const [id,setId]= useState()
     useEffect(() => {
-        dispatch(getEvent());
+        dispatch(getEvent(1));
     },[dispatch]);
     
     useEffect(() => {
@@ -21,8 +20,8 @@ export default function EventLists() {
     },[dispatch]);
     
     const findCategory=(id)=>{
-        dispatch(getSpecific(id));
-        // console.log(id)
+        dispatch(getSpecific(id,1));
+        setId(id)
     }
     const getAllEvents = async () => {
 		await dispatch(getEvent())
@@ -44,9 +43,6 @@ export default function EventLists() {
         return result
     }
     const categories = catList && catList.map(item=>
-        // <NavbarBrand href={`/categories/${item.name}`}key={item.id}>{item.name}</NavbarBrand>
-        // <NavbarBrand href={`#categories/${item.name}`}key={item.id}>{item.name}</NavbarBrand>
-        // <a href={`/categories/$`}key={item.id}>{item.name}</a>
         <Button key={item.id}color="link"onClick={()=>{findCategory(item.id)}}>{item.name}</Button>
     )
         
@@ -55,8 +51,9 @@ export default function EventLists() {
             <a href={`/detail/${item.title}/${item.id}`}>
                 <CardImg src={item.image} alt="Event image"/>
             </a>
-            <p className="price">SGD{moneyConvert(item.fee)}</p>
-            <p className={item.status==='available'?"available":"closed"}>{item.status}</p>
+            {item.fee=== 0 ? <p className="price">FREE</p>: <p className="price">SGD{moneyConvert(item.fee)}</p>}
+            {/* <p className="price">SGD{moneyConvert(item.fee)}</p> */}
+            <p className={item.status ==='available'?"available":"closed"}>{item.status}</p>
             <CardBody>
             <div className="event-desc_time">
                 <h4>{moment(item.dateTimeStart).format('DD')}</h4>
@@ -74,27 +71,38 @@ export default function EventLists() {
         </div>
       </Card>
     )
-
+    const nextPage=(page)=>{
+        dispatch(getSpecific(id,page));
+    }
+    const freeEvent = ()=> {
+        dispatch(getFreeEvent());
+    }
+    const paidEvent = ()=> {
+        dispatch(getPaidEvent());
+    }
     return (
         <div className="event-lists">
             <h1>Upcoming Events</h1>
-            {/* <div className="filters">
-                <li>By Date</li>
-                <li>By Price</li>
-            </div> */}
             <ul id="categories">
             <Button color="link"onClick={getAllEvents}>All</Button>
                 {categories}
+            <Button color="link"onClick={freeEvent}>Free</Button>
+            <Button color="link"onClick={paidEvent}>Paid</Button>
+                
             </ul> 
             <div className="events">
                 {event}
             </div>
             <Pagination aria-label="Page navigation example">
-                <PaginationItem>
-                    <PaginationLink href="#">
-                    1
-                    </PaginationLink>
-                </PaginationItem> 
+                {[...Array(pages)].map((item,index)=>{
+                    return(
+                        <PaginationItem key={index}>
+                            <PaginationLink onClick={()=>nextPage(index+1)}>
+                                {index+1}
+                            </PaginationLink>
+                        </PaginationItem>
+                    )
+                })}
             </Pagination>
         </div>
     )

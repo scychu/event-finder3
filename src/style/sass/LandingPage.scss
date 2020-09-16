@@ -101,6 +101,11 @@
                         background-color: rgb(120, 250, 68);
                         right:10px;
                     }
+                    &.closed{
+                        background-color: $second-color;
+                        color:$primary-color;
+                        right:10px;
+                    }
                 }
             .card-body{
                 display:flex;
@@ -147,7 +152,7 @@
 //Event Detail 
 .event-detail,
 .list-container{
-    padding:5rem;
+    padding:3rem;
     height:100vh;
     background-color: $primary-color;
     .detail-wrapper,
@@ -269,8 +274,8 @@
 }
 //Specific-category
 .specific-container{
-    padding:5rem;
-    height:100vh;
+    padding:3rem;
+    min-height:100vh;
     background-color: $primary-color;
 
     .events{
@@ -301,6 +306,11 @@
                     }
                     &.available{
                         background-color: rgb(120, 250, 68);
+                        right:10px;
+                    }
+                    &.closed{
+                        background-color: $second-color;
+                        color:$primary-color;
                         right:10px;
                     }
                 }
@@ -334,5 +344,11 @@
                 }
             }
         }
+    }
+}
+button{
+    &.cant{
+        cursor: no-drop;
+        pointer-events: none
     }
 }

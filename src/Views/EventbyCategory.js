@@ -8,12 +8,17 @@ import {getSpecific} from '../store/actions/events';
 export default function EventbyCategory() {
     const dispatch = useDispatch()
     const {category,id} = useParams()
+    const pages = useSelector(state=>state.events.pages)
+    const eventList = useSelector(state=>state.events.event)
+    
+    const nextPage=(page)=>{
+        dispatch(getSpecific(id,page));
+    }
 
     useEffect(() => {
-        dispatch(getSpecific(id));
+        dispatch(getSpecific(id,1));
     },[dispatch,id]);
     
-    const eventList = useSelector(state=>state.events.event)
     const moneyConvert =(num)=> {
         var str = num.toString();
         let array = [];
@@ -63,20 +68,15 @@ export default function EventbyCategory() {
                 {event}
             </div>
             <Pagination aria-label="Page navigation example">
-                <PaginationItem>
-                    <PaginationLink previous href="#" />
-                </PaginationItem>
-                <PaginationItem>
-                    <PaginationLink href="#">
-                    1
-                    </PaginationLink>
-                </PaginationItem> 
-                <PaginationItem>
-                    <PaginationLink next href="#" />
-                </PaginationItem>
-                <PaginationItem>
-                    <PaginationLink last href="#" />
-                </PaginationItem>
+                {[...Array(pages)].map((item,index)=>{
+                    return(
+                        <PaginationItem key={index}>
+                            <PaginationLink onClick={()=>nextPage(index+1)}>
+                                {index+1}
+                            </PaginationLink>
+                        </PaginationItem>
+                    )
+                })}
             </Pagination>
         </div>
     )
