@@ -11,12 +11,11 @@ export default function Routes() {
     return (
       <Switch>
         <Route path="/" component={LandingPage} exact />
-          <Route path="/home" component={EventLists} exact />
+        <Route path="/home" component={EventLists} exact />
         <Route path="/detail/:title/:id" component={EventDetail} exact />
         <Route path="/categories" component={CategoryList} exact />
-          <Route path="/categories/:category/:id" component={EventbyCategory} exact />
+        <Route path="/categories/:category/:id" component={EventbyCategory} exact />
         <Route component={NotFound} />
-
       </Switch>
     );
   }
