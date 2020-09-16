@@ -1,8 +1,8 @@
 import React,{useEffect,useState} from 'react';
 import moment from 'moment';
 import '../style/sass/LandingPage.scss';
-import {Button,Card, CardImg, CardBody, CardSubtitle, Pagination, PaginationItem, PaginationLink} from 'reactstrap';
-import {getEvent,getCategories,getSpecific} from '../store/actions/events';
+import {Button,Card, CardImg, CardBody,CardSubtitle, Pagination, PaginationItem, PaginationLink} from 'reactstrap';
+import {getEvent,getCategories,getSpecific,getFreeEvent,getPaidEvent} from '../store/actions/events';
 import {useSelector, useDispatch} from "react-redux";
 
 export default function EventLists() {
@@ -51,7 +51,8 @@ export default function EventLists() {
             <a href={`/detail/${item.title}/${item.id}`}>
                 <CardImg src={item.image} alt="Event image"/>
             </a>
-            <p className="price">SGD{moneyConvert(item.fee)}</p>
+            {item.fee=== 0 ? <p className="price">FREE</p>: <p className="price">SGD{moneyConvert(item.fee)}</p>}
+            {/* <p className="price">SGD{moneyConvert(item.fee)}</p> */}
             <p className={item.status ==='available'?"available":"closed"}>{item.status}</p>
             <CardBody>
             <div className="event-desc_time">
@@ -73,16 +74,21 @@ export default function EventLists() {
     const nextPage=(page)=>{
         dispatch(getSpecific(id,page));
     }
+    const freeEvent = ()=> {
+        dispatch(getFreeEvent());
+    }
+    const paidEvent = ()=> {
+        dispatch(getPaidEvent());
+    }
     return (
         <div className="event-lists">
             <h1>Upcoming Events</h1>
-            {/* <div className="filters">
-                <li>By Date</li>
-                <li>By Price</li>
-            </div> */}
             <ul id="categories">
             <Button color="link"onClick={getAllEvents}>All</Button>
                 {categories}
+            <Button color="link"onClick={freeEvent}>Free</Button>
+            <Button color="link"onClick={paidEvent}>Paid</Button>
+                
             </ul> 
             <div className="events">
                 {event}

@@ -9,6 +9,7 @@ export default function EventbyCategory() {
     const dispatch = useDispatch()
     const {category,id} = useParams()
     const pages = useSelector(state=>state.events.pages)
+    const eventList = useSelector(state=>state.events.event)
     
     const nextPage=(page)=>{
         dispatch(getSpecific(id,page));
@@ -18,7 +19,6 @@ export default function EventbyCategory() {
         dispatch(getSpecific(id,1));
     },[dispatch,id]);
     
-    const eventList = useSelector(state=>state.events.event)
     const moneyConvert =(num)=> {
         var str = num.toString();
         let array = [];

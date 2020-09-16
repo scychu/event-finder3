@@ -80,4 +80,44 @@ export const getEventDetail = (id) => {
   };
 };
 
+export const getFreeEvent = () => {
+  return (dispatch) => {
+    axios({
+      method: "GET",
+      url:`${URL}/all?page=1&fee=free&date=upcoming`,
+    })
+    .then((res) => {
+      console.log(res)
+      dispatch({
+        type: GET_EVENT,
+        payload:res.data.data.events,
+        // pages:res.data.data.page
+      })
+    })
+    .catch((err) => {
+      console.log(err, "ERROR");
+    });
+  };
+};
+
+export const getPaidEvent = () => {
+  return (dispatch) => {
+    axios({
+      method: "GET",
+      url:`${URL}/all?page=1&fee=paid&category=1&date=upcoming`,
+    })
+    .then((res) => {
+      console.log(res)
+      dispatch({
+        type: GET_EVENT,
+        payload:res.data.data.events,
+        // pages:res.data.data.page
+      })
+    })
+    .catch((err) => {
+      console.log(err, "ERROR");
+    });
+  };
+};
+
   
