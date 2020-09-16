@@ -1,4 +1,4 @@
-import {GET_EVENT,GET_CATEGORIES,GET_DETAIL} from '../actions/types'
+import {GET_EVENT,GET_CATEGORIES,GET_DETAIL,PROCESS,DONE} from '../actions/types'
 import axios from 'axios'
   const URL = 'https://event-finder-team-c.herokuapp.com/api/v1/event';
 
@@ -23,7 +23,10 @@ export const getEvent = (page) => {
     };
 };
 export const getCategories = () => {
-    return (dispatch) => {
+  return (dispatch) =>{
+    dispatch({
+      type:PROCESS
+    })
       axios({
         method: "GET",
         url:`${URL}/categories`,
@@ -34,9 +37,15 @@ export const getCategories = () => {
             type: GET_CATEGORIES,
             payload:res.data.data.categories
         })
+        dispatch({
+          type:DONE
+        })
       })
       .catch((err) => {
         console.log(err, "ERROR");
+        dispatch({
+          type:DONE
+        })
       });
     };
 };
@@ -62,7 +71,10 @@ export const getSpecific = (id,page) => {
 };
 
 export const getEventDetail = (id) => {
-  return (dispatch) => {
+  return (dispatch) =>{
+    dispatch({
+      type:PROCESS
+    })
     axios({
       method: "GET",
       url:`${URL}/one/${id}`,
@@ -73,12 +85,18 @@ export const getEventDetail = (id) => {
         type: GET_DETAIL,
         payload:res.data.data.event
       })
+      dispatch({
+        type:DONE
+      })
     })
     .catch((err) => {
       console.log(err, "ERROR");
+      dispatch({
+        type:DONE
+      })
     });
   };
-};
+}
 
 export const getFreeEvent = () => {
   return (dispatch) => {
