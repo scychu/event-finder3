@@ -29,7 +29,7 @@ export const bookEvent = (data) => {
       })
       .catch((err) => {
         console.log(err, "ERROR");
-        swal("","EEE","error");
+        swal("","Input invalid","error");
         return false
       });
     };

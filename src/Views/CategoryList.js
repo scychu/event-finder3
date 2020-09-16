@@ -1,10 +1,11 @@
 import React,{useEffect} from 'react';
-import {Card,CardImg,Breadcrumb, BreadcrumbItem} from 'reactstrap';
+import {Card,CardImg,Breadcrumb, BreadcrumbItem,Spinner} from 'reactstrap';
 import {useSelector, useDispatch} from "react-redux";
 import {getCategories} from '../store/actions/events';
 
 export default function CategoryList() {
     const dispatch = useDispatch();
+    const process = useSelector((state)=>state.events.process);
     const catList = useSelector(state=>state.events.categories)
     useEffect(() => {
         dispatch(getCategories());
@@ -26,9 +27,11 @@ export default function CategoryList() {
                     <BreadcrumbItem tag="a" href="/categories">Categories</BreadcrumbItem>
                 </Breadcrumb>
             </div>
-            <div className="category-list">
-                {categories}
-            </div>
+            {process ? <Spinner className="spinners"color="danger"/>: 
+                <div className="category-list">
+                    {categories}
+                </div>
+            }
         </div>
     )
 }

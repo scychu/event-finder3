@@ -1,4 +1,4 @@
-import {GET_EVENT,GET_CATEGORIES,GET_DETAIL} from "../actions/types";
+import {GET_EVENT,GET_CATEGORIES,GET_DETAIL,PROCESS,DONE} from "../actions/types";
   
 const initialState = {
     event:[],
@@ -7,7 +7,8 @@ const initialState = {
     fee:0,
     pages:0,
     category:"",
-    id:0
+    id:0,
+    process:false
 };
   
 const events = (state = initialState, action) => {
@@ -17,6 +18,17 @@ const events = (state = initialState, action) => {
         return {
             ...state,
         }
+        case PROCESS: 
+            return {
+                ...state,
+                process:true
+            }
+        case DONE: 
+        return {
+            ...state,
+            process:false
+        }
+
         case GET_EVENT: 
             return {
                 ...state,
